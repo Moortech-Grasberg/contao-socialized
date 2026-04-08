@@ -1,0 +1,17 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    MoortechGrasberg\ContaoSocialized\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/ContaoManager/'
+            - '../src/Domain/Model/'
+
+    MoortechGrasberg\ContaoSocialized\Domain\Port\CredentialsProviderInterface:
+        alias: MoortechGrasberg\ContaoSocialized\Adapter\Contao\ContaoCredentialsProvider
+
+    MoortechGrasberg\ContaoSocialized\Domain\Port\NewsContentResolverInterface:
+        alias: MoortechGrasberg\ContaoSocialized\Adapter\Contao\ContaoNewsContentResolver

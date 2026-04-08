@@ -1,0 +1,38 @@
+{
+    "name": "moortech-grasberg/contao-socialized",
+    "description": "Contao Bundle to automatically publish news articles to Facebook and Instagram via Meta Graph API.",
+    "license": "MIT",
+    "type": "contao-bundle",
+    "keywords": [
+        "contao",
+        "social-media",
+        "facebook",
+        "instagram",
+        "meta-graph-api"
+    ],
+    "require": {
+        "php": "^8.2",
+        "contao/core-bundle": "^5.3",
+        "contao/news-bundle": "^5.3",
+        "symfony/http-client": "^6.4 || ^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5 || ^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MoortechGrasberg\\ContaoSocialized\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MoortechGrasberg\\ContaoSocialized\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "contao-manager-plugin": "MoortechGrasberg\\ContaoSocialized\\ContaoManager\\Plugin"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

@@ -20,7 +20,7 @@ Add the repository to your Contao project's `composer.json`:
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/YOUR-USER/contao-socialized.git"
+            "url": "https://github.com/Moortech-Grasberg/contao-socialized.git"
         }
     ]
 }

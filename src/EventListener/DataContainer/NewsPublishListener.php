@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MoortechGrasberg\ContaoSocialized\EventListener\DataContainer;
 
+use Contao\ContentModel;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\DataContainer;
@@ -14,7 +15,7 @@ use Doctrine\DBAL\Connection;
 use MoortechGrasberg\ContaoSocialized\Domain\Service\SocialMediaPublishService;
 use Psr\Log\LoggerInterface;
 
-#[AsCallback(table: 'tl_news', target: 'config.onsubmit')]
+#[AsCallback(table: 'tl_content', target: 'config.onsubmit')]
 class NewsPublishListener
 {
     public function __construct(
@@ -33,8 +34,15 @@ class NewsPublishListener
 
         $this->framework->initialize();
 
+        $contentAdapter = $this->framework->getAdapter(ContentModel::class);
+        $content = $contentAdapter->findById($dc->id);
+
+        if ($content === null || $content->ptable !== 'tl_news') {
+            return;
+        }
+
         $newsAdapter = $this->framework->getAdapter(NewsModel::class);
-        $news = $newsAdapter->findById($dc->id);
+        $news = $newsAdapter->findById($content->pid);
 
         if ($news === null) {
             return;
